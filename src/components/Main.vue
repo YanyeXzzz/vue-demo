@@ -1,5 +1,5 @@
 <template>
-  <a-layout :style="{height: '100vh'}">
+  <a-layout :style="{ height: '100vh' }">
     <a-layout-header class="header">
       <div>
         <h2 :style="{ color: 'white' }">学生信息管理系统</h2>
@@ -12,10 +12,13 @@
           <template #title>
             <span>我的</span>
           </template>
-          <a-menu-item key="3-1">我的信息</a-menu-item>
+          <a-menu-item key="3-1" @click="getUserInfo">我的信息</a-menu-item>
           <a-menu-item key="3-2" @click="logOut">退出登录</a-menu-item>
           <a-menu-item key="3-3" @click="updataPwd">修改密码</a-menu-item>
         </a-sub-menu>
+        <a-menu-item>
+          <a-avatar class="avatar" :src="avatarUrl">user</a-avatar>
+        </a-menu-item>
       </a-menu>
     </a-layout-header>
     <a-layout>
@@ -54,8 +57,7 @@
           <a-breadcrumb-item>学生管理</a-breadcrumb-item>
           <a-breadcrumb-item>学生信息</a-breadcrumb-item>
         </a-breadcrumb>
-        <a-layout-content
-          :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px', }">
+        <a-layout-content :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px', }">
           <router-view @dataSource="getDataSource" :key="componentKey"></router-view>
         </a-layout-content>
       </a-layout>
@@ -82,6 +84,24 @@
       </a-form-item>
     </a-form>
   </a-modal>
+
+  <a-modal v-model:open="userInfoMoal" title="我的信息" @ok="">
+    <a-form ref="userInfoFormRef">
+
+      <a-form-item label="用户名" name="" has-feedback><a-input /></a-form-item>
+      <a-form-item label="用户头像">
+        <a-upload name="avatar" list-type="picture-card" class="avatar-uploader"
+          :show-upload-list="false" >
+          <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
+          <div v-else>
+            <loading-outlined v-if="loading"></loading-outlined>
+            <plus-outlined v-else></plus-outlined>
+            <div class="ant-upload-text">+</div>
+          </div>
+        </a-upload>
+      </a-form-item>
+    </a-form>
+  </a-modal>
 </template>
 
 <script>
@@ -96,6 +116,13 @@ import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 export default {
   data() {
     return {
+      userInfo: {},
+
+      userInfoFormRef: {},
+
+      userInfoMoal: false,
+      avatarUrl: 'https://hmleadnews-yanye.oss-cn-beijing.aliyuncs.com/1b9c3988-e6ab-4c4d-8275-94f3900833cd.jpg',
+
       selectedKeys1: ['2'],
       selectedKeys2: ['sub1-2'],
       openKeys: ['sub1'],
@@ -225,11 +252,15 @@ export default {
       })
     },
 
-    updataPwd(){
+    updataPwd() {
       // const params = new URLSearchParams()
       // params.append('username',)
       // params.append('oldPassword',)
       // params.append('newPassword',)
+    },
+
+    getUserInfo() {
+      this.userInfoMoal = true
     }
 
   }
@@ -257,5 +288,10 @@ export default {
 .header {
   display: flex;
   justify-content: space-between;
+}
+
+.avatar {
+  background-color: white;
+  color: gray;
 }
 </style>

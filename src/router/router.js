@@ -4,7 +4,7 @@ import AntDemoVue from '@/components/AntDemo.vue'
 import MainVue from '@/components/Main.vue'
 import StudentInfoVue from '@/components/StudentInfo.vue'
 import LoginVue from '@/components/Login.vue'
-
+import CloudMusic from '@/components/CloudMusic.vue';
 
 const routes = [
     { 
@@ -18,6 +18,9 @@ const routes = [
     },
     {
         path: '/',component: LoginVue
+    },
+    {
+        path: '/music', component: CloudMusic
     }
 ]
 

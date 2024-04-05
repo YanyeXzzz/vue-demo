@@ -317,8 +317,8 @@ export default {
 </script>
 <style>
 .page {
-    padding-top: 20px;
+    margin-top: 20px;
     margin-left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-25%);
 }
 </style>
