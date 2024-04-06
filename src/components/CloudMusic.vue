@@ -96,7 +96,7 @@ const play = (index) => {
 
 const save = (index) => {
     const songInfo = data.value[index]
-    axios.post('http://localhost:9090/save',songInfo)
+    axios.post('http://47.109.25.111:9090/save',songInfo)
         .then(response => {
             if(response.data.code === 0){
                 message.success(response.data.data)

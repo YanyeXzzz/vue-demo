@@ -85,30 +85,13 @@
     </a-form>
   </a-modal>
 
-  <a-modal v-model:open="userInfoMoal" title="我的信息" @ok="">
-    <a-form ref="userInfoFormRef">
-
-      <a-form-item label="用户名" name="" has-feedback><a-input /></a-form-item>
-      <a-form-item label="用户头像">
-        <a-upload name="avatar" list-type="picture-card" class="avatar-uploader"
-          :show-upload-list="false" >
-          <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
-          <div v-else>
-            <loading-outlined v-if="loading"></loading-outlined>
-            <plus-outlined v-else></plus-outlined>
-            <div class="ant-upload-text">+</div>
-          </div>
-        </a-upload>
-      </a-form-item>
-    </a-form>
-  </a-modal>
 </template>
 
 <script>
 import axios from 'axios';
 import { h } from 'vue'
 import { message, Modal } from 'ant-design-vue';
-import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+import { ExclamationCircleOutlined , } from '@ant-design/icons-vue';
 
 
 
@@ -206,7 +189,7 @@ export default {
     addStudent() {
       this.$refs.formRef.validate().then(() => {
         // 表单验证成功后发送axios请求
-        axios.post('http://localhost:9090/add', this.addStuFormData)
+        axios.post('http://47.109.25.111:9090/add', this.addStuFormData)
           .then(response => {
             if (response.data.code === 0) {
               this.componentKey++

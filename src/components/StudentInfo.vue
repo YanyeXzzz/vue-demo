@@ -194,7 +194,7 @@ export default {
             const oldId = this.editFormData.id
             // 校验表单
             this.$refs.formRef.validate().then(() => {
-                axios.put('http://localhost:9090?oldId=' + oldId, this.editFormData)
+                axios.put('http://47.109.25.111:9090?oldId=' + oldId, this.editFormData)
                     .then(response => {
                         if (response.data.code === 0) {
                             this.openEditModal = false
@@ -224,7 +224,7 @@ export default {
                 cancelText: 'No',
                 centered: true,
                 onOk: () => {
-                    axios.delete('http://localhost:9090/delete?id=' + id)
+                    axios.delete('http://47.109.25.111:9090/delete?id=' + id)
                         .then(response => {
                             if (response.data.code === 0) {
                                 message.success(response.data.data)
@@ -246,7 +246,7 @@ export default {
         },
 
         // getStudentInfo() {
-        //     axios.get('http://localhost:9090/get')
+        //     axios.get('http://47.109.25.111:9090/get')
         //         .then(response => {
         //             if (response.data.code === 0) {
         //                 this.dataSource = response.data.data
@@ -262,7 +262,7 @@ export default {
         // 分页查询
         selectAsPage() {
             this.getTotal()
-            axios.get('http://localhost:9090/select_with_page?pageNo=' + this.currentPage + '&pageSize=' + this.pageSize)
+            axios.get('http://47.109.25.111:9090/select_with_page?pageNo=' + this.currentPage + '&pageSize=' + this.pageSize)
                 .then(response => {
                     this.dataSource = response.data.data
                 })
@@ -273,7 +273,7 @@ export default {
 
         //获取总记录数
         getTotal() {
-            axios.get('http://localhost:9090/getTotal')
+            axios.get('http://47.109.25.111:9090/getTotal')
                 .then(response => {
                     this.total = response.data.data
                 })
@@ -284,7 +284,7 @@ export default {
 
         // 条件查询
         select(){
-            axios.get('http://localhost:9090/select?id=' + this.stuId)
+            axios.get('http://47.109.25.111:9090/select?id=' + this.stuId)
                 .then(response => {
                     if(response.data.code === 0){
                         this.dataSource = response.data.data

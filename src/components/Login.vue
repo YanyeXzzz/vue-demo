@@ -167,7 +167,7 @@ export default {
             params.append('password', this.loginData.password)
 
             this.$refs.formRef.validate().then(() => {
-                axios.post('http://localhost:9090/login', params)
+                axios.post('http://47.109.25.111:9090/login', params)
                     .then(response => {
                         if (response.data.code === 0) {
                             message.success(response.data.data)
@@ -199,7 +199,7 @@ export default {
             params.append('password', this.loginData.password)
 
             this.$refs.formRef.validate().then(() => {
-                axios.post('http://localhost:9090/register', params)
+                axios.post('http://47.109.25.111:9090/register', params)
                     .then(response => {
                         if (response.data.code === 0) {
                             message.success(response.data.data)
